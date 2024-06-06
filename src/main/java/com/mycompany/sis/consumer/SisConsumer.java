@@ -4,6 +4,9 @@
 
 package com.mycompany.sis.consumer;
 
+import com.mycompany.sis.consumer.view.MainView;
+
+
 /**
  *
  * @author Lucas
@@ -11,6 +14,7 @@ package com.mycompany.sis.consumer;
 public class SisConsumer {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        MainView mainview = new MainView();
+        mainview.startView();
     }
 }
