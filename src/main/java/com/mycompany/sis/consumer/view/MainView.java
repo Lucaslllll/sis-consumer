@@ -4,21 +4,53 @@
  */
 package com.mycompany.sis.consumer.view;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Lucas
  */
 public class MainView implements View{
-    public void print(String s){
-        System.out.print(s);
-    }
+    
     
 
     @Override
     public void startView() {
+        Scanner sc = new Scanner(System.in);
+        short opcao;
+        
         print("\n");print("\n");print("\n");
         print("---------------- Bem-vindo ao SIS Consumer ----------------");
         print("\n");print("\n");print("\n");
+        
+        
+        print("O sistema está aberto/fechado (falta implementar): \n");
+        print("Deseja quais das opções: \n\n");
+        print("1- Abrir sistema \n");
+        print("2- Consultar produtos \n");
+        print("3- Editar produtos (admin) \n");
+        print("4- Sair \n");
+        
+        opcao = sc.nextShort();
+        
+        switch(opcao){
+            case 1:
+                print("");
+            break;
+            case 2:
+                print("");
+            break;
+            case 3:
+                print("");
+            break;
+            case 4:
+                print("");
+            break;
+        }
+        
+        
+        
+        sc.close();
     }
     
 }

@@ -9,5 +9,8 @@ package com.mycompany.sis.consumer.view;
  * @author Lucas
  */
 public interface View {
+    default void print(String s){
+        System.out.print(s);
+    }
     void startView();
 }

@@ -4,6 +4,8 @@
 
 package com.mycompany.sis.consumer;
 
+import com.mycompany.sis.consumer.database.Database;
+import com.mycompany.sis.consumer.database.DatabaseTable;
 import com.mycompany.sis.consumer.view.MainView;
 
 
@@ -16,5 +18,8 @@ public class SisConsumer {
     public static void main(String[] args) {
         MainView mainview = new MainView();
         mainview.startView();
+        
+        
+        
     }
 }
