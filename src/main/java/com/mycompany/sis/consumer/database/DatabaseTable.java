@@ -5,6 +5,7 @@
 package com.mycompany.sis.consumer.database;
 
 import com.mycompany.sis.consumer.entity.Entity;
+import com.mycompany.sis.consumer.exception.DatabaseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,29 +29,44 @@ public class DatabaseTable<T extends Entity> implements DatabaseTableI{
     
     
     @Override
-    public void save(Entity entity) {
-        this.entityTables.put(id, (T) entity);
-        this.id += 1;
+    public void save(Entity entity) throws DatabaseException{
+        try {
+            this.entityTables.put(id, (T) entity);
+            this.id += 1;
+        }catch (Exception e) {
+            throw new DatabaseException("Failed to save "+entity.toString()+": " + e.getMessage());
+        }
     }
 
     @Override
-    public Optional findById(int id) {
+    public Optional findById(int id) throws DatabaseException{
         T found = this.entityTables.get(id);
         return Optional.ofNullable(found);
     }
 
     @Override
-    public List findAll() {
-        List<T> getAll = new ArrayList<>(Arrays.asList(this.entityTables));
+    public List findAll() throws DatabaseException {
+        List<T> getAll = new ArrayList<T>(this.entityTables.values());
+        
+        return getAll;
     }
 
     @Override
-    public void update(int id, Entity entity) {
-    
+    public void update(int id, Entity entity) throws DatabaseException{
+        try{
+            this.entityTables.put(id, (T) entity);
+        }catch (Exception e) {
+            throw new DatabaseException("Failed to update "+entity.toString()+": " + e.getMessage());
+        }
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(int id) throws DatabaseException{
+        try{
+            this.entityTables.remove(id);
+        }catch (Exception e) {
+            throw new DatabaseException("Failed to remove by id " + e.getMessage());
+        }
     
     }
     

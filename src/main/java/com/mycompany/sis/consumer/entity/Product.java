@@ -67,4 +67,9 @@ public class Product extends Entity {
         this.isMissing = isMissing;
     }
     
+    
+    @Override
+    public String toString(){
+        return this.name;
+    }
 }

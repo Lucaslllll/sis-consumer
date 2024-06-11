@@ -24,5 +24,8 @@ public class Table extends Entity {
         this.name = name;
     }
     
-    
+    @Override
+    public String toString(){
+        return this.name;
+    }
 }

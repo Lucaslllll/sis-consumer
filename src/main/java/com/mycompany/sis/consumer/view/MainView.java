@@ -24,31 +24,34 @@ public class MainView implements View{
         print("\n");print("\n");print("\n");
         
         
-        print("O sistema está aberto/fechado (falta implementar): \n");
-        print("Deseja quais das opções: \n\n");
-        print("1- Abrir sistema \n");
-        print("2- Consultar produtos \n");
-        print("3- Editar produtos (admin) \n");
-        print("4- Sair \n");
+        Loop: while(true){   
+            print("O sistema está aberto/fechado (falta implementar): \n");
+            print("Deseja quais das opções: \n\n");
+            print("1- Abrir sistema \n");
+            print("2- Consultar produtos \n");
+            print("3- Editar produtos (admin) \n");
+            print("4- Sair \n");
+
+            opcao = sc.nextShort();
+
+            switch(opcao){
+                case 1:
+                    print("");
+                break;
+                case 2:
+                    print("");
+                break;
+                case 3:
+                    print("");
+                break;
+                case 4:
+                    break Loop;
+                default:
+                    continue;
+                
+            }
         
-        opcao = sc.nextShort();
-        
-        switch(opcao){
-            case 1:
-                print("");
-            break;
-            case 2:
-                print("");
-            break;
-            case 3:
-                print("");
-            break;
-            case 4:
-                print("");
-            break;
         }
-        
-        
         
         sc.close();
     }

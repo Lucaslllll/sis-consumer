@@ -44,4 +44,8 @@ public class Expedient extends Entity{
         this.isOpen = isOpen;
     }
     
+    @Override
+    public String toString(){
+        return this.dateOpen+" até "+this.dateClose;
+    }
 }
