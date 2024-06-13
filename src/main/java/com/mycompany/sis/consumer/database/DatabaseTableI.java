@@ -6,6 +6,7 @@ package com.mycompany.sis.consumer.database;
 
 import com.mycompany.sis.consumer.entity.Entity;
 import com.mycompany.sis.consumer.exception.DatabaseException;
+import com.mycompany.sis.consumer.exception.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,7 +21,7 @@ public interface DatabaseTableI<T extends Entity> {
     
     List<T> findAll() throws DatabaseException;
     
-    void update(int id, T entity) throws DatabaseException;
+    void update(int id, T entity) throws DatabaseException, EntityNotFoundException;
     
     void delete(int id) throws DatabaseException;
 

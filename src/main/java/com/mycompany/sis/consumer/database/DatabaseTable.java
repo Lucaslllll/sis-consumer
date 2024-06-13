@@ -6,6 +6,7 @@ package com.mycompany.sis.consumer.database;
 
 import com.mycompany.sis.consumer.entity.Entity;
 import com.mycompany.sis.consumer.exception.DatabaseException;
+import com.mycompany.sis.consumer.exception.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -36,12 +37,14 @@ public class DatabaseTable<T extends Entity> implements DatabaseTableI{
         }catch (Exception e) {
             throw new DatabaseException("Failed to save "+entity.toString()+": " + e.getMessage());
         }
+    
     }
 
     @Override
     public Optional findById(int id) throws DatabaseException{
         T found = this.entityTables.get(id);
         return Optional.ofNullable(found);
+    
     }
 
     @Override
@@ -52,12 +55,13 @@ public class DatabaseTable<T extends Entity> implements DatabaseTableI{
     }
 
     @Override
-    public void update(int id, Entity entity) throws DatabaseException{
+    public void update(int id, Entity entity) throws DatabaseException, EntityNotFoundException{
         try{
             this.entityTables.put(id, (T) entity);
         }catch (Exception e) {
             throw new DatabaseException("Failed to update "+entity.toString()+": " + e.getMessage());
         }
+        
     }
 
     @Override

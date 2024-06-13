@@ -4,10 +4,43 @@
  */
 package com.mycompany.sis.consumer.database;
 
+import com.mycompany.sis.consumer.entity.Entity;
+import com.mycompany.sis.consumer.exception.DatabaseException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
 /**
  *
  * @author Lucas
  */
-public class Database {
+public class Database<T extends Entity> {
+    private Map<Class<? extends Entity>, DatabaseTableI<? extends Entity>> tables = new HashMap<>();
+    
+    void save(Class<T> clazz, T entity) throws DatabaseException{
+    
+        
+    };
+    
+    Optional<T> findById(int id) throws DatabaseException{
+        T a = null;
+        
+        return Optional.ofNullable(a);
+    };
+    
+    List<T> findAll() throws DatabaseException{
+        List<T> list = null;
+        
+        return list;
+    };
+    
+    void update(int id, T entity) throws DatabaseException{
+    
+    };
+    
+    void delete(int id) throws DatabaseException{
+    
+    };
     
 }

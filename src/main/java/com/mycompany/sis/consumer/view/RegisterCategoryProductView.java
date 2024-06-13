@@ -5,7 +5,11 @@
 package com.mycompany.sis.consumer.view;
 
 import com.mycompany.sis.consumer.entity.Category;
+import com.mycompany.sis.consumer.exception.DatabaseException;
+import com.mycompany.sis.consumer.service.RegisterCategoryProductService;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -20,6 +24,12 @@ public class RegisterCategoryProductView implements View{
         print("Digite o nome de uma categoria para os alguns dos seus produtos: ");
         String name = sc.nextLine();
         Category category = new Category(name);
+        
+        try {
+            RegisterCategoryProductService rcp = new RegisterCategoryProductService(category);
+        } catch (DatabaseException ex) {
+            Logger.getLogger(RegisterCategoryProductView.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
 }
