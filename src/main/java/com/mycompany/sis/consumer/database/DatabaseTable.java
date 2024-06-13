@@ -20,12 +20,13 @@ import java.util.Optional;
 public class DatabaseTable<T extends Entity> implements DatabaseTableI{
     private Map<Integer, T> entityTables;
     private static int id;
+    private Class type;
     
-    
-    public DatabaseTable(){
+    public DatabaseTable(Class type){
         this.entityTables = new HashMap<>();
         this.id = 1;
-    
+        this.type = type;
+        
     };
     
     
@@ -42,14 +43,24 @@ public class DatabaseTable<T extends Entity> implements DatabaseTableI{
 
     @Override
     public Optional findById(int id) throws DatabaseException{
-        T found = this.entityTables.get(id);
-        return Optional.ofNullable(found);
-    
+        T found;
+        try{
+            found = this.entityTables.get(id);
+        }catch(Exception e){
+            return Optional.ofNullable(e.getMessage());
+        }
+        
+        return Optional.of(found);
     }
 
     @Override
     public List findAll() throws DatabaseException {
-        List<T> getAll = new ArrayList<T>(this.entityTables.values());
+        List<T> getAll;
+        try{
+            getAll = new ArrayList<T>(this.entityTables.values());
+        }catch(Exception e){
+            throw new DatabaseException("Failed to find entities");
+        }
         
         return getAll;
     }
@@ -72,6 +83,11 @@ public class DatabaseTable<T extends Entity> implements DatabaseTableI{
             throw new DatabaseException("Failed to remove by id " + e.getMessage());
         }
     
+    }
+    
+    
+    public Class getType(){
+        return this.type;
     }
     
 }

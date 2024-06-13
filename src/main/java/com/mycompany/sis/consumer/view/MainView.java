@@ -36,7 +36,8 @@ public class MainView implements View{
 
             switch(opcao){
                 case 1:
-                    print("");
+                    LoginView lv = new LoginView();
+                    lv.startView();
                 break;
                 case 2:
                     print("");

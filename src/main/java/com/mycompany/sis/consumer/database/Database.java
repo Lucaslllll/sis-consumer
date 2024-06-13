@@ -18,28 +18,32 @@ import java.util.Optional;
 public class Database<T extends Entity> {
     private Map<Class<? extends Entity>, DatabaseTableI<? extends Entity>> tables = new HashMap<>();
     
-    void save(Class<T> clazz, T entity) throws DatabaseException{
+    public void migrate(Class<? extends Entity> c, DatabaseTableI<? extends Entity> dbt){
+        tables.put(c, dbt);
+    }
     
+    public void save(Class<T> clazz, T entity) throws DatabaseException{
+        tables.get(clazz).save(entity);
         
     };
     
-    Optional<T> findById(int id) throws DatabaseException{
+    public Optional<T> findById(int id) throws DatabaseException{
         T a = null;
         
         return Optional.ofNullable(a);
     };
     
-    List<T> findAll() throws DatabaseException{
+    public List<T> findAll() throws DatabaseException{
         List<T> list = null;
         
         return list;
     };
     
-    void update(int id, T entity) throws DatabaseException{
+    public void update(int id, T entity) throws DatabaseException{
     
     };
     
-    void delete(int id) throws DatabaseException{
+    public void delete(int id) throws DatabaseException{
     
     };
     

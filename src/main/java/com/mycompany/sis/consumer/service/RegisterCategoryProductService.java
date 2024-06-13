@@ -16,8 +16,8 @@ import com.mycompany.sis.consumer.exception.DatabaseException;
 public class RegisterCategoryProductService {
       
     public RegisterCategoryProductService(Category c) throws DatabaseException{
-        DatabaseTable db = new DatabaseTable();
-        db.save(c);
+        Database db = new Database();
+        db.save(Category.class, c);
         
         System.out.println("Registrado Um Nova Categoria Com Sucesso! ");
     }
