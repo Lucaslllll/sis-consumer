@@ -5,8 +5,10 @@
 package com.mycompany.sis.consumer.database;
 
 import com.mycompany.sis.consumer.entity.Entity;
+import com.mycompany.sis.consumer.entity.Product;
 import com.mycompany.sis.consumer.exception.DatabaseException;
 import com.mycompany.sis.consumer.exception.EntityNotFoundException;
+import com.mycompany.sis.consumer.exception.MigrationNotMakeException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -19,26 +21,29 @@ import java.util.function.Function;
  *
  * @author Lucas
  */
-public class Database<T extends Entity> {
+public class Database <T extends Entity> {
     private static Database instance;
     private Map<Class<? extends Entity>, DatabaseTableI<? extends Entity>> tables = new HashMap<>();
     
+    
     public void migrate(Class<? extends Entity> c, DatabaseTableI<? extends Entity> dbt){
+        this.instance = new Database();
         tables.put(c, dbt);
+        
         
     }
     
-    public static Database getInstance() {
+    public static Database getInstance() throws MigrationNotMakeException {
         if (instance == null) {
-            instance = new Database();
+            throw new MigrationNotMakeException("Error, make a migration of database before");
         }
         
         return instance;
     }
     
     
-    public void save(Class<T> clazz, T entity) throws DatabaseException{
-        tables.get(clazz).save(entity);
+    public <T extends Entity> void save(Class<T> clazz, T entity){
+        this.tables.get(clazz).save(entity);
         
     };
     
@@ -55,8 +60,9 @@ public class Database<T extends Entity> {
     
     public List<T> findAll() throws DatabaseException{
         List<T> list;
+        
         list = new ArrayList<T>(
-                (Collection<? extends T>) this.tables.get(Entity.class).findAll()
+              this.tables.values().size()
         );
         
         return list;

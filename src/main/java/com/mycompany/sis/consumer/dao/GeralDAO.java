@@ -5,39 +5,38 @@
 package com.mycompany.sis.consumer.dao;
 
 import com.mycompany.sis.consumer.database.Database;
-import com.mycompany.sis.consumer.database.DatabaseTableI;
+
 import com.mycompany.sis.consumer.entity.Category;
 import com.mycompany.sis.consumer.entity.Entity;
+
 import com.mycompany.sis.consumer.exception.DAOException;
 import com.mycompany.sis.consumer.exception.DatabaseException;
 import com.mycompany.sis.consumer.exception.EntityNotFoundException;
 import com.mycompany.sis.consumer.exception.MigrationNotMakeException;
+
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
  *
  * @author Lucas
  */
-public class CategoryDAO <T extends Entity> implements DAO{
+public class GeralDAO<T extends Entity> implements DAO {
     private Database database;
 
-    public CategoryDAO() throws MigrationNotMakeException {
+    public GeralDAO() throws MigrationNotMakeException {
         this.database = Database.getInstance();
     }
 
     
     @Override
     public void save(Class type, Entity entity) throws DAOException {
-        
-        database.save(Category.class, entity);
-        
+        this.database.save(type, entity);
     }
 
     @Override
@@ -113,7 +112,5 @@ public class CategoryDAO <T extends Entity> implements DAO{
             Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-   
     
- 
 }

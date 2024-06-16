@@ -13,8 +13,11 @@ import com.mycompany.sis.consumer.entity.Product;
 import com.mycompany.sis.consumer.entity.Request;
 import com.mycompany.sis.consumer.entity.Table;
 import com.mycompany.sis.consumer.entity.User;
+import com.mycompany.sis.consumer.exception.DAOException;
 
 import com.mycompany.sis.consumer.exception.DatabaseException;
+import com.mycompany.sis.consumer.exception.MigrationNotMakeException;
+import com.mycompany.sis.consumer.service.CreateUserService;
 
 import com.mycompany.sis.consumer.view.MainView;
 
@@ -28,7 +31,7 @@ import java.util.List;
  */
 public class SisConsumer {
 
-    public static void main(String[] args) throws DatabaseException {
+    public static void main(String[] args) throws DatabaseException, MigrationNotMakeException, DAOException {
         List<Class> nameTableMigrate = new ArrayList(
                 List.of(Category.class, Expedient.class, Table.class,
                             User.class, Product.class, Request.class
@@ -40,6 +43,20 @@ public class SisConsumer {
             DatabaseTable tb = new DatabaseTable(c);
             db.migrate(c, tb);
         }
+        
+        
+        // registrando previamente os usuários do sistema
+        
+        // admin
+        User u1 = new User("brinfo", "l@gmail.com", "allons-y", true);
+        
+        // waiter
+        User u2 = new User("dev", "dev12345");
+        
+        CreateUserService cs = new CreateUserService();
+        cs.make(u1);
+        cs.make(u2);
+        
         
         
         MainView mainview = new MainView();

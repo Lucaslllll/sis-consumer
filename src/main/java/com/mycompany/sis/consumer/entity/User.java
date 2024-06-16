@@ -10,9 +10,9 @@ package com.mycompany.sis.consumer.entity;
  */
 public class User extends Entity{
     private String name;
-    private String email;
+    private String email = "";
     private String password;
-    private boolean isAdmin;
+    private boolean isAdmin = false;
     
     
     public User(String name, String email, String password, boolean isAdmin){
@@ -20,6 +20,12 @@ public class User extends Entity{
         this.email = email;
         this.password = password;
         this.isAdmin = isAdmin;
+        
+    }
+    
+    public User(String name, String password){
+        this.name = name;
+        this.password = password;
         
     }
     

@@ -18,7 +18,7 @@ import java.util.function.Predicate;
  * @author Lucas
  */
 public interface DAO <T extends Entity>{
-    void save(T entity) throws DAOException;
+    void save(Class type, T entity) throws DAOException;
     
     Optional<T> findById(int id) throws DAOException;
     

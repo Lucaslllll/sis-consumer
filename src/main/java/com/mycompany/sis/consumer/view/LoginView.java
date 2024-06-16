@@ -28,6 +28,7 @@ public class LoginView implements View{
         LoginService ls = new LoginService();
         if(ls.do_login(email, password)){
             // abre novo expediente
+            
             OpenExpedientService oes = new OpenExpedientService();
             
             // Vai para tela de expediente
