@@ -21,59 +21,81 @@ import java.util.function.Function;
  *
  * @author Lucas
  */
-public class Database <T extends Entity> {
+public class Database {
     private static Database instance;
     private Map<Class<? extends Entity>, DatabaseTableI<? extends Entity>> tables = new HashMap<>();
     
     
     public void migrate(Class<? extends Entity> c, DatabaseTableI<? extends Entity> dbt){
-        this.instance = new Database();
-        tables.put(c, dbt);
+        this.tables.put(c, dbt);
         
         
     }
     
     public static Database getInstance() throws MigrationNotMakeException {
-        if (instance == null) {
-            throw new MigrationNotMakeException("Error, make a migration of database before");
+        if (Database.instance == null) {
+              Database.instance = new Database();
+//            throw new MigrationNotMakeException("Error, make a migration of database before");
         }
         
-        return instance;
+        return Database.instance;
     }
     
+  
     
-    public <T extends Entity> void save(Class<T> clazz, T entity){
-        this.tables.get(clazz).save(entity);
+    public <T extends Entity> void save(Class<T> clazz, T entity) throws DatabaseException{
+        // primeiro eu pego minha tabela e depois eu salvo
+        DatabaseTable<T> dbt = (DatabaseTable<T>) Database.instance.tables.get(clazz);
+        
+        System.out.println(this.tables);
+        System.out.println(dbt);
+        if(dbt != null){
+            dbt.save(entity);
+        }
         
     };
     
-    public Optional<T> findById(int id) throws DatabaseException, EntityNotFoundException{
+    public <T extends Entity> Optional<T> findById(int id) throws DatabaseException, EntityNotFoundException{
         
         List<T> list;
         
         list = new ArrayList<T>(
-                (Collection<? extends T>) this.tables.get(Entity.class).findAll()
+                (Collection<? extends T>) Database.instance.tables.get(Entity.class).findAll()
         );
         
         return Optional.ofNullable(list.get(id));
     };
     
-    public List<T> findAll() throws DatabaseException{
-        List<T> list;
+    public <T extends Entity> List<T> findAll() throws DatabaseException{
+        List<T> fa = null; 
+                
+//        System.out.println(this.tables.values().stream().sorted().toList());
         
-        list = new ArrayList<T>(
-              this.tables.values().size()
-        );
+//        System.out.println(this.tables);
+//        System.out.println(
+//                Database.instance.tables.values().stream().toList().get(0).findAll().stream().toList()
+//        );
+//        Database.instance.tables.values().stream().toList().
+        int contador = 0;
+        for(var a : Database.instance.tables.values().stream().toList()){
+            System.out.println(a.findAll());
+        }
+    
+        return fa;
         
-        return list;
     };
     
-    public void update(int id, T entity) throws DatabaseException{
-        tables.get(Entity.class).update(id, entity);
+    public <T extends Entity> void update(Class<T> clazz, T entity) throws EntityNotFoundException, DatabaseException{
+        DatabaseTable<T> dbt = (DatabaseTable<T>) this.tables.get(clazz);
+        
+        if(dbt != null){
+            dbt.update(entity);
+        }
+//        this.tables.get(clazz).update(0, entity);
     };
     
-    public void delete(int id) throws DatabaseException{
-        tables.get(Entity.class).delete(id);
+    public <T extends Entity> void delete(Class<T> clazz, int id) throws DatabaseException{
+        this.tables.get(clazz).delete(id);
     };
     
 }

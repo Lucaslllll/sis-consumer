@@ -36,7 +36,11 @@ public class GeralDAO<T extends Entity> implements DAO {
     
     @Override
     public void save(Class type, Entity entity) throws DAOException {
-        this.database.save(type, entity);
+        try {
+            this.database.save(type, entity);
+        } catch (DatabaseException ex) {
+            Logger.getLogger(GeralDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
@@ -93,24 +97,12 @@ public class GeralDAO<T extends Entity> implements DAO {
 
     @Override
     public void update(int id, Entity entity) throws DAOException {
-        try {
-            this.database.update(id, entity);
-        } catch (EntityNotFoundException e) {
-            throw new DAOException(e.getMessage());
-        } catch (DatabaseException ex) {
-            Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       
     }
 
     @Override
     public void delete(int id) throws DAOException {
-        try {
-            this.database.delete(id);
-        } catch (EntityNotFoundException e) {
-            throw new DAOException(e.getMessage());
-        } catch (DatabaseException ex) {
-            Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       
     }
     
 }

@@ -62,5 +62,8 @@ public class User extends Entity{
         this.isAdmin = isAdmin;
     }
     
-    
+    @Override
+    public String toString(){
+        return this.name;
+    }
 }

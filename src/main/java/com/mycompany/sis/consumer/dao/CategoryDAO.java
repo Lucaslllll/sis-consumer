@@ -36,8 +36,6 @@ public class CategoryDAO <T extends Entity> implements DAO{
     @Override
     public void save(Class type, Entity entity) throws DAOException {
         
-        database.save(Category.class, entity);
-        
     }
 
     @Override
@@ -94,24 +92,13 @@ public class CategoryDAO <T extends Entity> implements DAO{
 
     @Override
     public void update(int id, Entity entity) throws DAOException {
-        try {
-            this.database.update(id, entity);
-        } catch (EntityNotFoundException e) {
-            throw new DAOException(e.getMessage());
-        } catch (DatabaseException ex) {
-            Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
     }
 
     @Override
     public void delete(int id) throws DAOException {
-        try {
-            this.database.delete(id);
-        } catch (EntityNotFoundException e) {
-            throw new DAOException(e.getMessage());
-        } catch (DatabaseException ex) {
-            Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
+        
     }
    
     

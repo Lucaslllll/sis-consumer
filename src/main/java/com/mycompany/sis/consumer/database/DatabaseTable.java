@@ -12,12 +12,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  *
  * @author Lucas
  */
-public class DatabaseTable<T extends Entity> implements DatabaseTableI{
+public class DatabaseTable<T extends Entity> implements DatabaseTableI<T>{
     private Map<Integer, T> entityTables;
     private static int id;
     private Class type;
@@ -29,11 +30,11 @@ public class DatabaseTable<T extends Entity> implements DatabaseTableI{
         
     };
     
-    
     @Override
-    public void save(Entity entity) throws DatabaseException{
+    public void save(T entity) throws DatabaseException{
         try {
-            this.entityTables.put(id, (T) entity);
+            entity.setId(id);
+            this.entityTables.put(id, entity);
             this.id += 1;
         }catch (Exception e) {
             throw new DatabaseException("Failed to save "+entity.toString()+": " + e.getMessage());
@@ -57,7 +58,7 @@ public class DatabaseTable<T extends Entity> implements DatabaseTableI{
     public List findAll() throws DatabaseException {
         List<T> getAll;
         try{
-            getAll = new ArrayList<T>(this.entityTables.values());
+            getAll = new ArrayList<T>(this.entityTables.values().stream().collect(Collectors.toList()));
         }catch(Exception e){
             throw new DatabaseException("Failed to find entities");
         }
@@ -66,13 +67,22 @@ public class DatabaseTable<T extends Entity> implements DatabaseTableI{
     }
 
     @Override
-    public void update(int id, Entity entity) throws DatabaseException, EntityNotFoundException{
+    public void update(int id, T entity) throws DatabaseException, EntityNotFoundException{
         try{
-            this.entityTables.put(id, (T) entity);
+            this.entityTables.put(id, entity);
         }catch (Exception e) {
             throw new DatabaseException("Failed to update "+entity.toString()+": " + e.getMessage());
         }
         
+    }
+    @Override
+    public void update(T entity) throws DatabaseException {
+        int id = entity.getId();
+        try{
+            this.entityTables.put(id, entity);
+        }catch (Exception e) {
+            throw new DatabaseException("Failed to update "+entity.toString()+": " + e.getMessage());
+        }
     }
 
     @Override
@@ -89,5 +99,7 @@ public class DatabaseTable<T extends Entity> implements DatabaseTableI{
     public Class getType(){
         return this.type;
     }
+
+    
     
 }

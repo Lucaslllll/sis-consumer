@@ -4,12 +4,25 @@
  */
 package com.mycompany.sis.consumer.service;
 
+import com.mycompany.sis.consumer.dao.GeralDAO;
+import com.mycompany.sis.consumer.entity.Entity;
+import com.mycompany.sis.consumer.entity.Expedient;
+import com.mycompany.sis.consumer.exception.DAOException;
+import com.mycompany.sis.consumer.exception.MigrationNotMakeException;
+import java.util.List;
+
 /**
  *
  * @author Lucas
  */
 public class CheckExpedientService {
-    public CheckExpedientService(){
+    public CheckExpedientService() throws MigrationNotMakeException, DAOException{
+        
+        GeralDAO dao = new GeralDAO();        
+        List<Expedient> l = dao.findAll();
+        
+        System.out.println(l);
+        
         
     }
 }

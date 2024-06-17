@@ -8,6 +8,7 @@ import com.mycompany.sis.consumer.database.Database;
 import com.mycompany.sis.consumer.database.DatabaseTable;
 
 import com.mycompany.sis.consumer.entity.Category;
+import com.mycompany.sis.consumer.entity.Entity;
 import com.mycompany.sis.consumer.entity.Expedient;
 import com.mycompany.sis.consumer.entity.Product;
 import com.mycompany.sis.consumer.entity.Request;
@@ -38,10 +39,11 @@ public class SisConsumer {
                 )
         );
         
-        Database db = new Database();
+//        Database db = new Database();
         for(Class c : nameTableMigrate){
             DatabaseTable tb = new DatabaseTable(c);
-            db.migrate(c, tb);
+//            db.migrate(c, tb);
+            Database.getInstance().migrate(c, tb);
         }
         
         
@@ -57,6 +59,10 @@ public class SisConsumer {
         cs.make(u1);
         cs.make(u2);
         
+        Database tb1 = new Database();
+        List<Entity> findAll = tb1.findAll();
+        
+        System.out.println(findAll);
         
         
         MainView mainview = new MainView();
