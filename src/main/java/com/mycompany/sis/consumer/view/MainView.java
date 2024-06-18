@@ -4,7 +4,12 @@
  */
 package com.mycompany.sis.consumer.view;
 
+import com.mycompany.sis.consumer.exception.DAOException;
+import com.mycompany.sis.consumer.exception.MigrationNotMakeException;
+import com.mycompany.sis.consumer.service.CheckExpedientService;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -26,35 +31,65 @@ public class MainView implements View{
         
         Loop: while(true){   
             
-            
-            print("O sistema está aberto/fechado (falta implementar): \n");
-            
-            
-            print("Deseja quais das opções: \n\n");
-            print("1- Abrir sistema \n");
-            print("2- Consultar produtos \n");
-            print("3- Editar produtos (admin) \n");
-            print("4- Sair \n");
+            CheckExpedientService ces = new CheckExpedientService();
+            try {
+                if(!ces.test()){
+                    print("O sistema está fechado: \n");
+                    print("1- Abrir sistema \n");
+                    print("2- Sair \n");
+                    opcao = sc.nextShort();
 
-            opcao = sc.nextShort();
+                    switch(opcao){
+                        case 1:
+                            LoginView lv = new LoginView();
+                            lv.startView();
+                        break;
+                        case 2:
+                            break Loop;
+                        default:
+                            continue;
 
-            switch(opcao){
-                case 1:
-                    LoginView lv = new LoginView();
-                    lv.startView();
-                break;
-                case 2:
-                    print("");
-                break;
-                case 3:
-                    print("");
-                break;
-                case 4:
-                    break Loop;
-                default:
-                    continue;
+                    }
+                    
+                }else{
+                    print("Deseja quais das opções: \n\n");
+                    print("1- Consultar produtos \n");
+                    print("2- Editar produtos (admin) \n");
+                    print("3- Editar categorias de produtos \n");
+                    print("4- Sair \n");
+                    opcao = sc.nextShort();
+
+                    switch(opcao){
+                        case 1:
+                            print("");
+                        break;
+                        case 2:
+                            print("");
+                        break;
+                        case 3:
+                            print("");
+                        break;
+                        case 4:
+                            break Loop;
+                        default:
+                            continue;
+
+                    }
                 
+                }
+                
+            } catch (MigrationNotMakeException ex) {
+                Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (DAOException ex) {
+                Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
+            
+            
+            
+            
+
+            
         
         }
         
