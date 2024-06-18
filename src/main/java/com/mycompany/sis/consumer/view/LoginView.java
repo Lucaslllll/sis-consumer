@@ -4,9 +4,14 @@
  */
 package com.mycompany.sis.consumer.view;
 
+import com.mycompany.sis.consumer.exception.DAOException;
+import com.mycompany.sis.consumer.exception.MigrationNotMakeException;
+import com.mycompany.sis.consumer.service.CheckExpedientService;
 import com.mycompany.sis.consumer.service.LoginService;
 import com.mycompany.sis.consumer.service.OpenExpedientService;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -27,6 +32,17 @@ public class LoginView implements View{
         // falta implementar
         LoginService ls = new LoginService();
         if(ls.do_login(email, password)){
+            
+            // check se há expedient aberto
+            CheckExpedientService ces = new CheckExpedientService();
+            try {
+                ces.test();
+            } catch (MigrationNotMakeException ex) {
+                Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (DAOException ex) {
+                Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
             // abre novo expediente
             
             OpenExpedientService oes = new OpenExpedientService();

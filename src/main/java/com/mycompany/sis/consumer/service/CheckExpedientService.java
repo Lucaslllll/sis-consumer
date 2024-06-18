@@ -16,10 +16,10 @@ import java.util.List;
  * @author Lucas
  */
 public class CheckExpedientService {
-    public CheckExpedientService() throws MigrationNotMakeException, DAOException{
+    public void test() throws MigrationNotMakeException, DAOException{
         
         GeralDAO dao = new GeralDAO();        
-        List<Expedient> l = dao.findAll();
+        List<Expedient> l = dao.findAll(Expedient.class);
         
         System.out.println(l);
         

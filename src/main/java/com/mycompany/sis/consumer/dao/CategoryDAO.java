@@ -53,22 +53,22 @@ public class CategoryDAO <T extends Entity> implements DAO{
 
     @Override
     public List<T> findAll() throws DAOException {
-        try {
-            return this.database.findAll();
-        } catch (DatabaseException e) {
-            throw new DAOException(e.getMessage());
-        }
+//        try {
+//            return this.database.findAll();
+//        } catch (DatabaseException e) {
+//            throw new DAOException(e.getMessage());
+//        }
     }
 
     @Override
     public List<T> findAll(Predicate filter) throws DAOException {
         Stream st = null;
-        try {
-            st = Stream.of(this.database.findAll());
-            st.filter(filter);
-        } catch (DatabaseException ex) {
-            Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            st = Stream.of(this.database.findAll());
+//            st.filter(filter);
+//        } catch (DatabaseException ex) {
+//            Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         
         
         return st.toList();
@@ -78,13 +78,13 @@ public class CategoryDAO <T extends Entity> implements DAO{
     @Override
     public List findAll(Comparator comparator) throws DAOException {
         Stream st = null;
-        try {
-            st = Stream.of(this.database.findAll());
-            st.sorted(comparator);
-        } catch (DatabaseException ex) {
-            Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+//        try {
+//            st = Stream.of(this.database.findAll());
+//            st.sorted(comparator);
+//        } catch (DatabaseException ex) {
+//            Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        
         
         return st.toList();
 

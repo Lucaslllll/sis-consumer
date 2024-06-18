@@ -59,10 +59,7 @@ public class SisConsumer {
         cs.make(u1);
         cs.make(u2);
         
-        Database tb1 = new Database();
-        List<Entity> findAll = tb1.findAll();
         
-        System.out.println(findAll);
         
         
         MainView mainview = new MainView();

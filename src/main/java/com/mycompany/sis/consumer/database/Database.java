@@ -6,6 +6,7 @@ package com.mycompany.sis.consumer.database;
 
 import com.mycompany.sis.consumer.entity.Entity;
 import com.mycompany.sis.consumer.entity.Product;
+import com.mycompany.sis.consumer.entity.User;
 import com.mycompany.sis.consumer.exception.DatabaseException;
 import com.mycompany.sis.consumer.exception.EntityNotFoundException;
 import com.mycompany.sis.consumer.exception.MigrationNotMakeException;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -47,8 +49,8 @@ public class Database {
         // primeiro eu pego minha tabela e depois eu salvo
         DatabaseTable<T> dbt = (DatabaseTable<T>) Database.instance.tables.get(clazz);
         
-        System.out.println(this.tables);
-        System.out.println(dbt);
+//        System.out.println(this.tables);
+//        System.out.println(dbt);
         if(dbt != null){
             dbt.save(entity);
         }
@@ -66,21 +68,22 @@ public class Database {
         return Optional.ofNullable(list.get(id));
     };
     
-    public <T extends Entity> List<T> findAll() throws DatabaseException{
-        List<T> fa = null; 
-                
-//        System.out.println(this.tables.values().stream().sorted().toList());
+    public <T extends Entity> List<T> findAll(Class<T> clazz) throws DatabaseException{
+
+        ////        System.out.println(this.tables.values().stream().sorted().toList());
+        //        
+        ////        System.out.println(this.tables);
+        ////        System.out.println(
+        ////                Database.instance.tables.values().stream().toList().get(0).findAll().stream().toList()
+        ////        );
+        ////        Database.instance.tables.values().stream().toList().
         
-//        System.out.println(this.tables);
-//        System.out.println(
-//                Database.instance.tables.values().stream().toList().get(0).findAll().stream().toList()
-//        );
-//        Database.instance.tables.values().stream().toList().
-        int contador = 0;
-        for(var a : Database.instance.tables.values().stream().toList()){
-            System.out.println(a.findAll());
-        }
-    
+        List<T> fa; 
+
+        fa = new ArrayList<T>(
+                (Collection<? extends T>) Database.instance.tables.get(clazz).findAll()
+        );
+        
         return fa;
         
     };

@@ -56,44 +56,8 @@ public class GeralDAO<T extends Entity> implements DAO {
         return null;
     }
 
-    @Override
-    public List<T> findAll() throws DAOException {
-        try {
-            return this.database.findAll();
-        } catch (DatabaseException e) {
-            throw new DAOException(e.getMessage());
-        }
-    }
-
-    @Override
-    public List<T> findAll(Predicate filter) throws DAOException {
-        Stream st = null;
-        try {
-            st = Stream.of(this.database.findAll());
-            st.filter(filter);
-        } catch (DatabaseException ex) {
-            Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-        return st.toList();
-        
-    }
-
-    @Override
-    public List findAll(Comparator comparator) throws DAOException {
-        Stream st = null;
-        try {
-            st = Stream.of(this.database.findAll());
-            st.sorted(comparator);
-        } catch (DatabaseException ex) {
-            Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-        return st.toList();
-
-    }
+    
+    
 
     @Override
     public void update(int id, Entity entity) throws DAOException {
@@ -103,6 +67,43 @@ public class GeralDAO<T extends Entity> implements DAO {
     @Override
     public void delete(int id) throws DAOException {
        
+    }
+
+    @Override
+    public List findAll(Class clazz, Comparator comparator) throws DAOException {
+        Stream st = null;
+        try {
+            st = Stream.of(this.database.findAll(clazz));
+            st.sorted(comparator);
+        } catch (DatabaseException ex) {
+            Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        return st.toList();
+    }
+
+    @Override
+    public List findAll(Class clazz) throws DAOException {
+        try {
+            return this.database.findAll(clazz);
+        } catch (DatabaseException e) {
+            throw new DAOException(e.getMessage());
+        }
+    }
+
+    @Override
+    public List findAll(Class clazz, Predicate filter) throws DAOException {
+        Stream st = null;
+        try {
+            st = Stream.of(this.database.findAll(clazz));
+            st.filter(filter);
+        } catch (DatabaseException ex) {
+            Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        return st.toList();
     }
     
 }

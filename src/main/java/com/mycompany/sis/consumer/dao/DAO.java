@@ -22,11 +22,11 @@ public interface DAO <T extends Entity>{
     
     Optional<T> findById(int id) throws DAOException;
     
-    List<T> findAll() throws DAOException;
+    List<T> findAll(Class<T> clazz) throws DAOException;
     
-    List<T> findAll(Predicate<T> filter) throws DAOException;
+    List<T> findAll(Class<T> clazz, Predicate<T> filter) throws DAOException;
     
-    List<T> findAll(Comparator<T> comparator) throws DAOException;
+    List<T> findAll(Class<T> clazz, Comparator<T> comparator) throws DAOException;
     
     void update(int id, T entity) throws DAOException;
     

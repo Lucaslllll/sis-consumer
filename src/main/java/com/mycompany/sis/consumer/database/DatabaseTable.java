@@ -66,6 +66,7 @@ public class DatabaseTable<T extends Entity> implements DatabaseTableI<T>{
         return getAll;
     }
 
+    
     @Override
     public void update(int id, T entity) throws DatabaseException, EntityNotFoundException{
         try{
