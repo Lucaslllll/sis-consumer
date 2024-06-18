@@ -4,6 +4,7 @@
 
 package com.mycompany.sis.consumer;
 
+import com.mycompany.sis.consumer.dao.GeralDAO;
 import com.mycompany.sis.consumer.database.Database;
 import com.mycompany.sis.consumer.database.DatabaseTable;
 
@@ -59,6 +60,9 @@ public class SisConsumer {
         cs.make(u1);
         cs.make(u2);
         
+//        debug
+//        GeralDAO dao = new GeralDAO();
+//        System.out.println(dao.findAll(Category.class));
         
         
         

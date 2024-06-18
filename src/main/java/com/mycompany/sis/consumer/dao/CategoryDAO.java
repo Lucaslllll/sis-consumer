@@ -25,81 +25,83 @@ import java.util.stream.Stream;
  *
  * @author Lucas
  */
-public class CategoryDAO <T extends Entity> implements DAO{
-    private Database database;
 
-    public CategoryDAO() throws MigrationNotMakeException {
-        this.database = Database.getInstance();
-    }
-
-    
-    @Override
-    public void save(Class type, Entity entity) throws DAOException {
-        
-    }
-
-    @Override
-    public Optional findById(int id) throws DAOException {
-        try {
-            return database.findById(id);
-        } catch (EntityNotFoundException e) {
-            throw new DAOException(e.getMessage());
-        } catch (DatabaseException ex) {
-            Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        return null;
-    }
-
-    @Override
-    public List<T> findAll() throws DAOException {
+public class CategoryDAO{
+//public class CategoryDAO <T extends Entity> implements DAO{
+//    private Database database;
+//
+//    public CategoryDAO() throws MigrationNotMakeException {
+//        this.database = Database.getInstance();
+//    }
+//
+//    
+//    @Override
+//    public void save(Class type, Entity entity) throws DAOException {
+//        
+//    }
+//
+//    @Override
+//    public Optional findById(int id) throws DAOException {
 //        try {
-//            return this.database.findAll();
-//        } catch (DatabaseException e) {
+//            return database.findById(id);
+//        } catch (EntityNotFoundException e) {
 //            throw new DAOException(e.getMessage());
-//        }
-    }
-
-    @Override
-    public List<T> findAll(Predicate filter) throws DAOException {
-        Stream st = null;
-//        try {
-//            st = Stream.of(this.database.findAll());
-//            st.filter(filter);
-//        } catch (DatabaseException ex) {
-//            Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-        
-        
-        return st.toList();
-        
-    }
-
-    @Override
-    public List findAll(Comparator comparator) throws DAOException {
-        Stream st = null;
-//        try {
-//            st = Stream.of(this.database.findAll());
-//            st.sorted(comparator);
 //        } catch (DatabaseException ex) {
 //            Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 //        
-        
-        return st.toList();
-
-    }
-
-    @Override
-    public void update(int id, Entity entity) throws DAOException {
-
-    }
-
-    @Override
-    public void delete(int id) throws DAOException {
-
-        
-    }
+//        return null;
+//    }
+//
+//    @Override
+//    public List<T> findAll() throws DAOException {
+////        try {
+////            return this.database.findAll();
+////        } catch (DatabaseException e) {
+////            throw new DAOException(e.getMessage());
+////        }
+//    }
+//
+//    @Override
+//    public List<T> findAll(Predicate filter) throws DAOException {
+//        Stream st = null;
+////        try {
+////            st = Stream.of(this.database.findAll());
+////            st.filter(filter);
+////        } catch (DatabaseException ex) {
+////            Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+////        }
+//        
+//        
+//        return st.toList();
+//        
+//    }
+//
+//    @Override
+//    public List findAll(Comparator comparator) throws DAOException {
+//        Stream st = null;
+////        try {
+////            st = Stream.of(this.database.findAll());
+////            st.sorted(comparator);
+////        } catch (DatabaseException ex) {
+////            Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+////        }
+////        
+//        
+//        return st.toList();
+//
+//    }
+//
+//    @Override
+//    public void update(int id, Entity entity) throws DAOException {
+//
+//    }
+//
+//    @Override
+//    public void delete(int id) throws DAOException {
+//
+//        
+//    }
    
     
  

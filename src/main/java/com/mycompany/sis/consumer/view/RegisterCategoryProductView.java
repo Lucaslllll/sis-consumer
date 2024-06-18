@@ -5,7 +5,9 @@
 package com.mycompany.sis.consumer.view;
 
 import com.mycompany.sis.consumer.entity.Category;
+import com.mycompany.sis.consumer.exception.DAOException;
 import com.mycompany.sis.consumer.exception.DatabaseException;
+import com.mycompany.sis.consumer.exception.MigrationNotMakeException;
 import com.mycompany.sis.consumer.service.RegisterCategoryProductService;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -28,7 +30,11 @@ public class RegisterCategoryProductView implements View{
         try {
             RegisterCategoryProductService rcp = new RegisterCategoryProductService(category);
         } catch (DatabaseException ex) {
-            Logger.getLogger(RegisterCategoryProductView.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RegisterCategoryProductView.class.getName());
+        } catch (MigrationNotMakeException ex) {
+            Logger.getLogger(RegisterCategoryProductView.class.getName());
+        } catch (DAOException ex) {
+            Logger.getLogger(RegisterCategoryProductView.class.getName());
         }
         
     }

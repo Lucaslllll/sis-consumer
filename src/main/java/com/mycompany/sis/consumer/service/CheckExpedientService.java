@@ -14,15 +14,20 @@ import java.util.List;
 /**
  *
  * @author Lucas
+ * Esse serviço deverá retornar se há algum expedient aberto
  */
 public class CheckExpedientService {
-    public void test() throws MigrationNotMakeException, DAOException{
+    public boolean test() throws MigrationNotMakeException, DAOException{
         
         GeralDAO dao = new GeralDAO();        
         List<Expedient> l = dao.findAll(Expedient.class);
         
-        System.out.println(l);
         
+        if(l.isEmpty()){
+            return false;
+        }
+        
+        return true;
         
     }
 }

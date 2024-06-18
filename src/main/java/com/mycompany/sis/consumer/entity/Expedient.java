@@ -4,6 +4,8 @@
  */
 package com.mycompany.sis.consumer.entity;
 
+import java.util.List;
+
 /**
  *
  * @author Lucas
@@ -12,6 +14,7 @@ public class Expedient extends Entity{
     private String dateOpen;
     private String dateClose;
     private boolean isOpen;
+    private List<Product> listProducts;
     
     public Expedient(String dateOpen, String dateClose, boolean isOpen){
         this.dateOpen = dateOpen;
@@ -19,6 +22,10 @@ public class Expedient extends Entity{
         this.isOpen = isOpen;
     }
     
+    // sempre quando for registrado o pedidos de uma mesa, devo adicionar ao expedient aberto
+    private void addProductExpedient(Product p){
+        listProducts.add(p);
+    }
     
     public String getDateOpen() {
         return dateOpen;

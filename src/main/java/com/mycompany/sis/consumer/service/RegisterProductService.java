@@ -4,10 +4,14 @@
  */
 package com.mycompany.sis.consumer.service;
 
+import com.mycompany.sis.consumer.entity.Product;
+
 /**
  *
  * @author Lucas
  */
 public class RegisterProductService {
+    public RegisterProductService(Product p){
     
+    }
 }

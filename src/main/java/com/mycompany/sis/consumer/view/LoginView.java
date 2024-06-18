@@ -31,32 +31,41 @@ public class LoginView implements View{
         
         // falta implementar
         LoginService ls = new LoginService();
-        if(ls.do_login(email, password)){
-            
-            // check se há expedient aberto
-            CheckExpedientService ces = new CheckExpedientService();
-            try {
-                ces.test();
-            } catch (MigrationNotMakeException ex) {
-                Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (DAOException ex) {
-                Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
+        try {
+            if(ls.do_login(email, password)){
+                
+                // check se há expedient aberto
+                CheckExpedientService ces = new CheckExpedientService();
+                
+                try {
+                    ces.test();
+                } catch (MigrationNotMakeException ex) {
+                    Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (DAOException ex) {
+                    Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                // abre novo expediente
+                OpenExpedientService oes = new OpenExpedientService();
+                
+                
+                // Vai para tela de expediente
+                ExpedientView ev = new ExpedientView();
+                
+            }else{
+                print("Email ou Senha incorretos... retornando a tela principal");
             }
+            
+            
 
-            // abre novo expediente
-            
-            OpenExpedientService oes = new OpenExpedientService();
-            
-            // Vai para tela de expediente
-            ExpedientView ev = new ExpedientView();
-        
-        }else{
-            print("Email ou Senha incorretos... retornando a tela principal");
+//        sc.close();
+        } catch (MigrationNotMakeException ex) {
+            Logger.getLogger(LoginView.class.getName());
         }
         
         
         
-//        sc.close();
+        
     }
     
 }

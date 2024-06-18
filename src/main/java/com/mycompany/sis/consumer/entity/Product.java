@@ -14,16 +14,14 @@ public class Product extends Entity {
     private Category category;
     private int stock;
     private boolean isMissing;
-    private Expedient expedient;
     
     
-    public Product(String name, float price, Category category, int stock, boolean isMissing, Expedient expedient){
+    public Product(String name, float price, Category category, int stock, boolean isMissing){
         this.name = name;
         this.price = price;
         this.category = category;
         this.stock = stock;
         this.isMissing = isMissing;
-        this.expedient = expedient;
     }
     
     

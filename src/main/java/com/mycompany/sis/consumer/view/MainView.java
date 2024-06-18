@@ -25,7 +25,11 @@ public class MainView implements View{
         
         
         Loop: while(true){   
+            
+            
             print("O sistema está aberto/fechado (falta implementar): \n");
+            
+            
             print("Deseja quais das opções: \n\n");
             print("1- Abrir sistema \n");
             print("2- Consultar produtos \n");

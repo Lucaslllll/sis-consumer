@@ -21,6 +21,7 @@ import java.util.function.Predicate;
 /**
  *
  * @author Lucas
+ * Esse serviço deverá criar os usuários do sistema 
  */
 public class CreateUserService {
   
