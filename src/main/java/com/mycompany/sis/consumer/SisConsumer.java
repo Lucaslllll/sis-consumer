@@ -51,10 +51,10 @@ public class SisConsumer {
         // registrando previamente os usuários do sistema
         
         // admin
-        User u1 = new User("brinfo", "l@gmail.com", "allons-y", true);
+        User u1 = new User("brinfo", "admin@gmail.com", "allons-y", true);
         
         // waiter
-        User u2 = new User("dev", "dev12345");
+        User u2 = new User("dev", "waiter@gmail.com","dev12345");
         
         CreateUserService cs = new CreateUserService();
         cs.make(u1);

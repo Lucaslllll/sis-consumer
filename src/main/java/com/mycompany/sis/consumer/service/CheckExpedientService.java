@@ -23,6 +23,8 @@ public class CheckExpedientService {
         List<Expedient> l = dao.findAll(Expedient.class);
         
         
+        
+        // corrigir, passar um filtro para saber se existe algum expedient aberto e não se tá vazio
         if(l.isEmpty()){
             return false;
         }

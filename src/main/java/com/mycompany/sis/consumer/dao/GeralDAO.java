@@ -20,6 +20,8 @@ import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
+
 import java.util.stream.Stream;
 
 /**
@@ -71,16 +73,18 @@ public class GeralDAO<T extends Entity> implements DAO {
 
     @Override
     public List findAll(Class clazz, Comparator comparator) throws DAOException {
-        Stream st = null;
+        List<T> fList = null;
+        
         try {
-            st = Stream.of(this.database.findAll(clazz));
-            st.sorted(comparator);
+            fList = this.database.findAll(clazz);
+            
         } catch (DatabaseException ex) {
-            Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(clazz.getName()).log(Level.SEVERE, null, ex);
+        
         }
         
         
-        return st.toList();
+        return fList.stream().sorted(comparator).toList();
     }
 
     @Override
@@ -94,16 +98,20 @@ public class GeralDAO<T extends Entity> implements DAO {
 
     @Override
     public List findAll(Class clazz, Predicate filter) throws DAOException {
-        Stream st = null;
+        List<T> fList = null;
+        
         try {
-            st = Stream.of(this.database.findAll(clazz));
-            st.filter(filter);
+            fList = this.database.findAll(clazz);
+//            System.out.println(fList.filter(filter).collect(Collectors.toList()));
+//            System.out.println(fList.stream().filter(filter));
+            
         } catch (DatabaseException ex) {
-            Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(clazz.getName()).log(Level.SEVERE, null, ex);
+        
         }
         
         
-        return st.toList();
+        return fList.stream().filter(filter).toList();
     }
     
 }

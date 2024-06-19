@@ -53,7 +53,7 @@ public class LoginView implements View{
                 ExpedientView ev = new ExpedientView();
                 
             }else{
-                print("Email ou Senha incorretos... retornando a tela principal");
+                print("\nretornando a tela principal \n");
             }
             
             
@@ -61,6 +61,8 @@ public class LoginView implements View{
 //        sc.close();
         } catch (MigrationNotMakeException ex) {
             Logger.getLogger(LoginView.class.getName());
+        } catch (DAOException ex) {
+            Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
