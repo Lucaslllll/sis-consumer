@@ -16,16 +16,18 @@ public class Expedient extends Entity{
     private boolean isOpen;
     private List<Product> listProducts;
     
-    public Expedient(String dateOpen, String dateClose, boolean isOpen){
+    public Expedient(String dateOpen, boolean isOpen){
         this.dateOpen = dateOpen;
-        this.dateClose = dateClose;
         this.isOpen = isOpen;
+        this.dateClose = null;
     }
     
     // sempre quando for registrado o pedidos de uma mesa, devo adicionar ao expedient aberto
     private void addProductExpedient(Product p){
         listProducts.add(p);
     }
+    
+    
     
     public String getDateOpen() {
         return dateOpen;

@@ -15,14 +15,10 @@ import com.mycompany.sis.consumer.exception.MigrationNotMakeException;
  * @author Lucas
  */
 public class OpenExpedientService {
-    public void open() throws MigrationNotMakeException, DAOException{
-        Expedient e = new Expedient("data", "aa", true);
+    public void open(String dateOpen, boolean isOpen) throws MigrationNotMakeException, DAOException{
+        Expedient e = new Expedient(dateOpen, isOpen);
         
-        // lembrete: implementar uma feature checar se há expedient aberto, caso sim
-        // então não poderá ser aberto outro.
-        
-        
-        // salvar
+        // salvar meu expedient criado/aberto
         GeralDAO dao = new GeralDAO();
         dao.save(Expedient.class, e);
         

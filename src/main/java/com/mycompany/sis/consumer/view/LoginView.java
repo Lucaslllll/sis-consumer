@@ -37,20 +37,17 @@ public class LoginView implements View{
                 // check se há expedient aberto
                 CheckExpedientService ces = new CheckExpedientService();
                 
-                try {
-                    ces.test();
-                } catch (MigrationNotMakeException ex) {
-                    Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (DAOException ex) {
-                    Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
+                if(ces.test()){
+                    
+                    // Vai para tela de abrir expediente
+                    ExpedientView ev = new ExpedientView();
+                    ev.startView();
                 }
                 
-                // abre novo expediente
-                OpenExpedientService oes = new OpenExpedientService();
                 
                 
-                // Vai para tela de expediente
-                ExpedientView ev = new ExpedientView();
+                
+                
                 
             }else{
                 print("\nretornando a tela principal \n");

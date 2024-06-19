@@ -7,9 +7,11 @@ package com.mycompany.sis.consumer.service;
 import com.mycompany.sis.consumer.dao.GeralDAO;
 import com.mycompany.sis.consumer.entity.Entity;
 import com.mycompany.sis.consumer.entity.Expedient;
+import com.mycompany.sis.consumer.entity.User;
 import com.mycompany.sis.consumer.exception.DAOException;
 import com.mycompany.sis.consumer.exception.MigrationNotMakeException;
 import java.util.List;
+import java.util.function.Predicate;
 
 /**
  *
@@ -20,16 +22,20 @@ public class CheckExpedientService {
     public boolean test() throws MigrationNotMakeException, DAOException{
         
         GeralDAO dao = new GeralDAO();        
-        List<Expedient> l = dao.findAll(Expedient.class);
         
         
+        Predicate<Expedient> checkOpened = expedient -> expedient.isIsOpen() == true;
         
+        List<Expedient> le = dao.findAll(Expedient.class, checkOpened);
+        
+        // System.out.println("lista de expedientes "+le);
         // corrigir, passar um filtro para saber se existe algum expedient aberto e não se tá vazio
-        if(l.isEmpty()){
-            return false;
+        // se tiver vazio, então posso abrir um expediente
+        if(le.isEmpty()){
+            return true;
         }
         
-        return true;
+        return false;
         
     }
 }

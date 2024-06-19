@@ -33,7 +33,7 @@ public class MainView implements View{
             
             CheckExpedientService ces = new CheckExpedientService();
             try {
-                if(!ces.test()){
+                if(ces.test()){
                     print("\nO sistema está fechado: \n");
                     print("1- Abrir sistema \n");
                     print("2- Sair \n");
