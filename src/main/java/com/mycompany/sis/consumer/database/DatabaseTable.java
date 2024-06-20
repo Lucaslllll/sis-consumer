@@ -51,7 +51,7 @@ public class DatabaseTable<T extends Entity> implements DatabaseTableI<T>{
             return Optional.ofNullable(e.getMessage());
         }
         
-        return Optional.of(found);
+        return Optional.ofNullable(found);
     }
 
     @Override

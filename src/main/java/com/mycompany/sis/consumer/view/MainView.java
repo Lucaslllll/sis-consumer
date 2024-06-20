@@ -53,15 +53,21 @@ public class MainView implements View{
                     
                 }else{
                     print("Deseja quais das opções: \n\n");
-                    print("1- Consultar produtos \n");
-                    print("2- Editar produtos (admin) \n");
-                    print("3- Editar categorias de produtos \n");
-                    print("4- Sair \n");
+                    print("1- Abrir mesa \n");
+                    print("2- Selecionar um mesa aberta \n");
+                    print("3- Verificar stock dos produtos cadastrados \n");
+                    print("4- Fechar mesar \n");
+                    print("5- Fechar expediente \n");
+                    print("6- Editar produtos (admin) \n"); 
+                    print("7- Editar categorias de produtos \n");
+                    print("8- Editar mesas \n");
+                    
                     opcao = sc.nextShort();
 
                     switch(opcao){
                         case 1:
-                            print("");
+                            OpenTablesView otv = new OpenTablesView();
+                            otv.startView();
                         break;
                         case 2:
                             print("");
@@ -69,11 +75,9 @@ public class MainView implements View{
                         case 3:
                             print("");
                         break;
-                        case 4:
-                            break Loop;
+                        
                         default:
                             continue;
-
                     }
                 
                 }

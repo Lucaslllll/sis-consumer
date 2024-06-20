@@ -19,6 +19,8 @@ import com.mycompany.sis.consumer.exception.DAOException;
 
 import com.mycompany.sis.consumer.exception.DatabaseException;
 import com.mycompany.sis.consumer.exception.MigrationNotMakeException;
+import com.mycompany.sis.consumer.service.CreateCategoryService;
+import com.mycompany.sis.consumer.service.CreateTableService;
 import com.mycompany.sis.consumer.service.CreateUserService;
 
 import com.mycompany.sis.consumer.view.MainView;
@@ -48,21 +50,38 @@ public class SisConsumer {
         }
         
         
-        // registrando previamente os usuários do sistema
+        // para testar e demonstrar o sistema
+        // eu irei criar as primeiras categorias, produtos e mesas
         
+        // registrando previamente algumas categorias de produtos do sistema
+        Category c1 = new Category("Bebidas");
+        Category c2 = new Category("Petiscos");
+        CreateCategoryService cs = new CreateCategoryService();
+        cs.make(c1);
+        cs.make(c2);
+        
+        // registrando previamente os usuários do sistema
         // admin
         User u1 = new User("brinfo", "admin@gmail.com", "allons-y", true);
-        
         // waiter
         User u2 = new User("dev", "waiter@gmail.com","dev12345");
         
-        CreateUserService cs = new CreateUserService();
-        cs.make(u1);
-        cs.make(u2);
+        CreateUserService us = new CreateUserService();
+        us.make(u1);
+        us.make(u2);
         
-//        debug
-//        GeralDAO dao = new GeralDAO();
-//        System.out.println(dao.findAll(Category.class));
+        
+        // criar previamente algumas mesas
+        Table t1 = new Table("T1");
+        Table t2 = new Table("T2");
+        Table t3 = new Table("T3");
+        CreateTableService cts = new CreateTableService();
+        cts.make(t1);
+        cts.make(t2);
+        cts.make(t3);
+        
+        
+
         
         
         

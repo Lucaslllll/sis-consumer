@@ -18,9 +18,9 @@ import java.util.function.Predicate;
  * @author Lucas
  */
 public interface DAO <T extends Entity>{
-    void save(Class type, T entity) throws DAOException;
+    void save(Class clazz, T entity) throws DAOException;
     
-    Optional<T> findById(int id) throws DAOException;
+    Optional<T> findById(Class<T> clazz, int id) throws DAOException;
     
     List<T> findAll(Class<T> clazz) throws DAOException;
     
@@ -28,8 +28,8 @@ public interface DAO <T extends Entity>{
     
     List<T> findAll(Class<T> clazz, Comparator<T> comparator) throws DAOException;
     
-    void update(int id, T entity) throws DAOException;
+    void update(Class<T> clazz, int id, T entity) throws DAOException;
     
-    void delete(int id) throws DAOException;
+    void delete(Class<T> clazz, int id) throws DAOException;
 
 }

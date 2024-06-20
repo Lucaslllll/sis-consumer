@@ -28,7 +28,7 @@ import java.util.stream.Stream;
  *
  * @author Lucas
  */
-public class GeralDAO<T extends Entity> implements DAO {
+public class GeralDAO<T extends Entity> implements DAO<T> {
     private Database database;
 
     public GeralDAO() throws MigrationNotMakeException {
@@ -46,29 +46,33 @@ public class GeralDAO<T extends Entity> implements DAO {
     }
 
     @Override
-    public Optional findById(int id) throws DAOException {
+    public Optional findById(Class clazz, int id) throws DAOException {
+        Optional<T> getEntity = null;
         try {
-            return database.findById(id);
-        } catch (EntityNotFoundException e) {
-            throw new DAOException(e.getMessage());
+            getEntity = database.findById(clazz, id);
         } catch (DatabaseException ex) {
-            Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GeralDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        return null;
+        
+        return Optional.ofNullable(getEntity);
     }
 
     
     
 
-    @Override
-    public void update(int id, Entity entity) throws DAOException {
-       
+    public void update(Class clazz, T entity) throws DAOException, DatabaseException {
+        this.database.update(clazz, entity);
+        
     }
 
     @Override
-    public void delete(int id) throws DAOException {
-       
+    public void delete(Class clazz, int id) throws DAOException {
+        try {
+            this.database.delete(clazz, id);
+        } catch (DatabaseException ex) {
+            Logger.getLogger(GeralDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
@@ -113,5 +117,12 @@ public class GeralDAO<T extends Entity> implements DAO {
         
         return fList.stream().filter(filter).toList();
     }
+
+    @Override
+    public void update(Class<T> clazz, int id, T entity) throws DAOException {
+        
+    }
+
+    
     
 }

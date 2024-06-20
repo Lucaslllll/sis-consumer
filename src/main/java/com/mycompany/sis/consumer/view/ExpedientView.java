@@ -35,6 +35,7 @@ public class ExpedientView implements View {
         }
         
         
+        print("\nAberto com sucesso! \n\n");
     }
     
 }

@@ -57,12 +57,12 @@ public class Database {
         
     };
     
-    public <T extends Entity> Optional<T> findById(int id) throws DatabaseException, EntityNotFoundException{
+    public <T extends Entity> Optional<T> findById(Class<T> clazz, int id) throws DatabaseException, EntityNotFoundException{
         
         List<T> list;
         
         list = new ArrayList<T>(
-                (Collection<? extends T>) Database.instance.tables.get(Entity.class).findAll()
+                (Collection<? extends T>) Database.instance.tables.get(clazz).findAll()
         );
         
         return Optional.ofNullable(list.get(id));
@@ -89,16 +89,14 @@ public class Database {
     };
     
     public <T extends Entity> void update(Class<T> clazz, T entity) throws EntityNotFoundException, DatabaseException{
-        DatabaseTable<T> dbt = (DatabaseTable<T>) this.tables.get(clazz);
+//        DatabaseTable<T> dbt = (DatabaseTable<T>) this.tables.get(clazz);
+        DatabaseTable<T> dbt = (DatabaseTable<T>) Database.instance.tables.get(clazz);
         
-        if(dbt != null){
-            dbt.update(entity);
-        }
-//        this.tables.get(clazz).update(0, entity);
+        dbt.update(entity);
     };
     
     public <T extends Entity> void delete(Class<T> clazz, int id) throws DatabaseException{
-        this.tables.get(clazz).delete(id);
+        Database.instance.tables.get(clazz).delete(id);
     };
     
 }

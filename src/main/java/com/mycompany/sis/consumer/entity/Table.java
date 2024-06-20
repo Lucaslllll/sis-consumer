@@ -10,10 +10,11 @@ package com.mycompany.sis.consumer.entity;
  */
 public class Table extends Entity {
     private String name;
-    
+    private boolean isOpen;
     
     public Table(String name){
         this.name = name;
+        this.isOpen = false;
     }
 
     public String getName() {
@@ -23,9 +24,18 @@ public class Table extends Entity {
     public void setName(String name) {
         this.name = name;
     }
+
+
+    public boolean isIsOpen() {
+        return isOpen;
+    }
+
+    public void setIsOpen(boolean isOpen) {
+        this.isOpen = isOpen;
+    }
     
     @Override
     public String toString(){
-        return this.name;
+        return "A mesa '"+this.name+"' está "+String.valueOf(isOpen)+"";
     }
 }
