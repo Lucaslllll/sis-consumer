@@ -7,6 +7,7 @@ package com.mycompany.sis.consumer.service;
 import com.mycompany.sis.consumer.dao.GeralDAO;
 import com.mycompany.sis.consumer.entity.Expedient;
 import com.mycompany.sis.consumer.entity.Product;
+import com.mycompany.sis.consumer.entity.Request;
 import com.mycompany.sis.consumer.entity.Table;
 import com.mycompany.sis.consumer.exception.DAOException;
 import com.mycompany.sis.consumer.exception.MigrationNotMakeException;
@@ -17,16 +18,17 @@ import java.util.function.Predicate;
  *
  * @author Lucas
  */
-public class GetExpedientService {
-    public Expedient get() throws DAOException, MigrationNotMakeException{
+public class GetProductsByTableService {
+    // não deixar pegar mesas fechas e sim as abertas
+    // pelas mesas pegar os seus produtos
+    public List<Request> filterByTable(Table t) throws MigrationNotMakeException, DAOException{
         GeralDAO dao = new GeralDAO();
-        List<Expedient> le = dao.findAll(Expedient.class);
         
-        // retorno o último elemento da minha lista, ou seja,
-        // pego o expedient aberto
-        return le.get(le.size()-1); 
+        Predicate<Request> requestFilter  = request -> request.getTable().getName().equals(t.getName());
         
+        
+        List<Request> le = dao.findAll(Request.class, requestFilter);
+        
+        return le;
     }
-    
-    
 }

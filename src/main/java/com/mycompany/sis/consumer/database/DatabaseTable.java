@@ -87,7 +87,8 @@ public class DatabaseTable<T extends Entity> implements DatabaseTableI<T>{
     }
 
     @Override
-    public void delete(int id) throws DatabaseException{
+    public void delete(T entity) throws DatabaseException{
+        int id = entity.getId();
         try{
             this.entityTables.remove(id);
         }catch (Exception e) {

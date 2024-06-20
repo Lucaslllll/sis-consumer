@@ -5,28 +5,20 @@
 package com.mycompany.sis.consumer.service;
 
 import com.mycompany.sis.consumer.dao.GeralDAO;
-import com.mycompany.sis.consumer.entity.Expedient;
 import com.mycompany.sis.consumer.entity.Product;
-import com.mycompany.sis.consumer.entity.Table;
+import com.mycompany.sis.consumer.entity.Request;
 import com.mycompany.sis.consumer.exception.DAOException;
 import com.mycompany.sis.consumer.exception.MigrationNotMakeException;
-import java.util.List;
-import java.util.function.Predicate;
 
 /**
  *
  * @author Lucas
  */
-public class GetExpedientService {
-    public Expedient get() throws DAOException, MigrationNotMakeException{
+public class CreateRequestService {
+    public void make(Request req) throws DAOException, MigrationNotMakeException{
         GeralDAO dao = new GeralDAO();
-        List<Expedient> le = dao.findAll(Expedient.class);
+        dao.save(Request.class, req);
         
-        // retorno o último elemento da minha lista, ou seja,
-        // pego o expedient aberto
-        return le.get(le.size()-1); 
-        
+        System.out.println("Pedido da mesa '"+req.getTable().getName()+"' foi registrado com sucesso! ");
     }
-    
-    
 }

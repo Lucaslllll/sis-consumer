@@ -4,6 +4,7 @@
  */
 package com.mycompany.sis.consumer.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,11 +21,12 @@ public class Expedient extends Entity{
         this.dateOpen = dateOpen;
         this.isOpen = isOpen;
         this.dateClose = null;
+        this.listRequest = new ArrayList<Request>();
     }
     
     // sempre quando for registrado o pedidos de uma mesa, devo adicionar ao expedient aberto
     public void addProductExpedient(Request r){
-        this.listRequest.add(r);
+        this.getListRequest().add(r);
     }
     
     
@@ -56,5 +58,13 @@ public class Expedient extends Entity{
     @Override
     public String toString(){
         return this.dateOpen+" até "+this.dateClose;
+    }
+
+    public List<Request> getListRequest() {
+        return listRequest;
+    }
+
+    public void setListRequest(List<Request> listRequest) {
+        this.listRequest = listRequest;
     }
 }

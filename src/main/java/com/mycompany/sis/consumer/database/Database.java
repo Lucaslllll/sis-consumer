@@ -93,10 +93,14 @@ public class Database {
         DatabaseTable<T> dbt = (DatabaseTable<T>) Database.instance.tables.get(clazz);
         
         dbt.update(entity);
+        
     };
     
-    public <T extends Entity> void delete(Class<T> clazz, int id) throws DatabaseException{
-        Database.instance.tables.get(clazz).delete(id);
+    public <T extends Entity> void delete(Class<T> clazz, T entity) throws DatabaseException{
+        DatabaseTable<T> dbt = (DatabaseTable<T>) Database.instance.tables.get(clazz);
+        
+        dbt.delete(entity);
+        
     };
     
 }

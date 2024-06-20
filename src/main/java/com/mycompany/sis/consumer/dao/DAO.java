@@ -31,5 +31,5 @@ public interface DAO <T extends Entity>{
     void update(Class<T> clazz, int id, T entity) throws DAOException;
     
     void delete(Class<T> clazz, int id) throws DAOException;
-
+    
 }

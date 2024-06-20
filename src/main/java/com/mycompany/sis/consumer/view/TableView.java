@@ -39,11 +39,12 @@ public class TableView implements View{
                 Table table = fots.list().get(opcao-1);
 
                 print("Deseja quais das opções: \n\n");
-                print("1- Adicionar produto na mesa \n"); // lista e pega 
-                print("2- Retirar produto da mesa \n");
-                print("3- Aplicar desconto \n");
-                print("4- Ver valor atual da mesa (meia) \n");
-                print("5- Voltar \n\n");
+                print("1- Adicionar produto na mesa \n");    // lista e pega 
+                print("2- Listar produtos de uma mesa \n"); // selecionar mesa e pegar
+                print("3- Retirar produto da mesa \n");
+                print("4- Aplicar desconto \n");
+                print("5- Ver valor atual da mesa (meia) \n");
+                print("6- Voltar \n\n");
 
                 opcao = sc.nextShort();
 
@@ -53,12 +54,17 @@ public class TableView implements View{
                         ppitv.start(table);
                     break;
                     case 2:
+                        ListProductsInTableView lpit = new ListProductsInTableView();
+                        lpit.start(table);
                     break;
                     case 3:
+                        RemoveProductsInTableView rpitv = new RemoveProductsInTableView();
                     break;
                     case 4:
                     break;
                     case 5:
+                    break;
+                    case 6:
                     break;
                 }
             }else{

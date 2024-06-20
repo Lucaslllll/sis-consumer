@@ -74,7 +74,7 @@ public class MainView implements View{
                             tv.startView();
                         break;
                         case 3:
-                            print("");
+                            
                         break;
                         case 4:
                             CloseTablesView ctv = new CloseTablesView();

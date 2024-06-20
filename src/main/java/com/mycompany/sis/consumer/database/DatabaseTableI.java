@@ -26,7 +26,7 @@ public interface DatabaseTableI<T extends Entity> {
     
     void update(T entity) throws DatabaseException, EntityNotFoundException;
     
-    void delete(int id) throws DatabaseException;
+    void delete(T entity) throws DatabaseException;
 
     
 

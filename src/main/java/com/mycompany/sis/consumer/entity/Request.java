@@ -51,4 +51,9 @@ public class Request extends Entity{
     public void setWaiter(User waiter) {
         this.waiter = waiter;
     }
+    
+    @Override
+    public String toString(){
+        return this.product.getName()+" da "+this.table.getName();
+    }
 }

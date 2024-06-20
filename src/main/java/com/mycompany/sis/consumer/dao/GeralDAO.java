@@ -66,15 +66,11 @@ public class GeralDAO<T extends Entity> implements DAO<T> {
         
     }
 
-    @Override
-    public void delete(Class clazz, int id) throws DAOException {
-        try {
-            this.database.delete(clazz, id);
-        } catch (DatabaseException ex) {
-            Logger.getLogger(GeralDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void delete(Class clazz, T entity) throws DAOException, DatabaseException {
+        this.database.delete(clazz, entity);
     }
 
+    
     @Override
     public List findAll(Class clazz, Comparator comparator) throws DAOException {
         List<T> fList = null;
@@ -121,6 +117,11 @@ public class GeralDAO<T extends Entity> implements DAO<T> {
     @Override
     public void update(Class<T> clazz, int id, T entity) throws DAOException {
         
+    }
+
+    @Override
+    public void delete(Class<T> clazz, int id) throws DAOException {
+       
     }
 
     

@@ -11,6 +11,7 @@ import com.mycompany.sis.consumer.exception.DAOException;
 import com.mycompany.sis.consumer.exception.DatabaseException;
 import com.mycompany.sis.consumer.exception.MigrationNotMakeException;
 import com.mycompany.sis.consumer.service.ChangeStatusExpedientService;
+import com.mycompany.sis.consumer.service.CreateRequestService;
 import com.mycompany.sis.consumer.service.GetExpedientService;
 import com.mycompany.sis.consumer.service.ListAllProductsService;
 import java.util.Scanner;
@@ -40,7 +41,7 @@ public class PutProductsInTableView implements View {
                     print("Digite '"+count+"' para adicionar '"+p.getName()+"' à mesa  \n");
                     count++;
                 }
-                print("Para sair digite -1 \n");
+                print("\nPara sair digite -1 \n");
                 opcao = sc.nextShort();
                 
                 if(opcao == -1){
@@ -52,6 +53,8 @@ public class PutProductsInTableView implements View {
                 Product po = laps.list().get(opcao-1);
                 // jogo no pedido o produto e a mesa
                 Request req = new Request(po, tb);
+                CreateRequestService crs = new CreateRequestService();
+                crs.make(req);
                 
                 // pego o expediente atual e adiciono o pedido
                 // assim depois pego tanto os pedidos como os produtos 
@@ -59,6 +62,8 @@ public class PutProductsInTableView implements View {
                 GetExpedientService ges = new GetExpedientService();
                 Expedient ex = ges.get();
                 ex.addProductExpedient(req);
+//                print(ex.getListRequest().toString()+"\n");
+
                 
                 // atualizo no banco de dados essa mudança
                 ChangeStatusExpedientService cse = new ChangeStatusExpedientService();
