@@ -28,9 +28,7 @@ public class ExpedientView implements View {
         String dateOpen = sc.nextLine();
         try {
             oes.open(dateOpen, true);
-        } catch (MigrationNotMakeException ex) {
-            Logger.getLogger(ExpedientView.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (DAOException ex) {
+        } catch (MigrationNotMakeException | DAOException ex) {
             Logger.getLogger(ExpedientView.class.getName()).log(Level.SEVERE, null, ex);
         }
         

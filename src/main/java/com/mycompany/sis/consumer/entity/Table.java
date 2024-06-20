@@ -11,10 +11,12 @@ package com.mycompany.sis.consumer.entity;
 public class Table extends Entity {
     private String name;
     private boolean isOpen;
+    private float bonus;
     
     public Table(String name){
         this.name = name;
         this.isOpen = false;
+        this.bonus = 0.0f;
     }
 
     public String getName() {
@@ -37,5 +39,13 @@ public class Table extends Entity {
     @Override
     public String toString(){
         return "A mesa '"+this.name+"' está "+String.valueOf(isOpen)+"";
+    }
+
+    public float getBonus() {
+        return bonus;
+    }
+
+    public void setBonus(float bonus) {
+        this.bonus = bonus;
     }
 }

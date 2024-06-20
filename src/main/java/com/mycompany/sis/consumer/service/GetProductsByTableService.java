@@ -20,11 +20,13 @@ import java.util.function.Predicate;
  */
 public class GetProductsByTableService {
     // não deixar pegar mesas fechas e sim as abertas
-    // pelas mesas pegar os seus produtos
+    // pelas mesas pegar os pedidos que não estão pagos/payed
     public List<Request> filterByTable(Table t) throws MigrationNotMakeException, DAOException{
         GeralDAO dao = new GeralDAO();
         
-        Predicate<Request> requestFilter  = request -> request.getTable().getName().equals(t.getName());
+
+        Predicate<Request> requestFilter;
+        requestFilter = request -> request.getTable().getName().equals(t.getName()) && request.isPayed() == false;
         
         
         List<Request> le = dao.findAll(Request.class, requestFilter);

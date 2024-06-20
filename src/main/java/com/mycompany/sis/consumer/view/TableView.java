@@ -44,7 +44,7 @@ public class TableView implements View{
                 print("3- Retirar produto da mesa \n");
                 print("4- Aplicar desconto \n");
                 print("5- Ver valor atual da mesa (meia) \n");
-                print("6- Voltar \n\n");
+                print("outro valor- Voltar \n\n");
 
                 opcao = sc.nextShort();
 
@@ -59,10 +59,15 @@ public class TableView implements View{
                     break;
                     case 3:
                         RemoveProductsInTableView rpitv = new RemoveProductsInTableView();
+                        rpitv.start(table);
                     break;
                     case 4:
+                        ApplyBonusView abv = new ApplyBonusView();
+                        abv.start(table);
                     break;
                     case 5:
+                        GetPriceTableView gptv = new GetPriceTableView();
+                        gptv.start(table);
                     break;
                     case 6:
                     break;

@@ -44,14 +44,19 @@ public class RemoveProductsInTableView implements View{
                 
                 print("\nPara sair digite -1 \n");
                 opcao = sc.nextShort();
+                if(opcao == -1){
+                    break Loop;
+                }
                 
                 
                 GeralDAO dao = new GeralDAO();
-                dao.delete(Request.class, ges.filterByTable(table).get(count-1));
+                dao.delete(Request.class, ges.filterByTable(table).get(opcao-1));
                 
-                print("\n");
+                print("Removido com sucesso! \n\n");
+                
             
             }
+            
         } catch (DAOException ex) {
             Logger.getLogger(PutProductsInTableView.class.getName()).log(Level.SEVERE, null, ex);
         } catch (MigrationNotMakeException ex) {

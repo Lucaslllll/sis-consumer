@@ -12,12 +12,13 @@ public class Request extends Entity{
     private Product product;
     private Table table;
     private User waiter;
+    private boolean payed;
     
     public Request(Product product, Table table, User waiter){
         this.product = product;
         this.table = table;
         this.waiter = waiter;
-        
+        this.payed = false;
     }
     
     public Request(Product product, Table table){
@@ -55,5 +56,13 @@ public class Request extends Entity{
     @Override
     public String toString(){
         return this.product.getName()+" da "+this.table.getName();
+    }
+
+    public boolean isPayed() {
+        return payed;
+    }
+
+    public void setPayed(boolean payed) {
+        this.payed = payed;
     }
 }
