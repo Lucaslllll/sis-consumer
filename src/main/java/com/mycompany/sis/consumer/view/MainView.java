@@ -54,7 +54,7 @@ public class MainView implements View{
                 }else{
                     print("Deseja quais das opções: \n\n");
                     print("1- Abrir mesa \n");
-                    print("2- Selecionar um mesa aberta \n");
+                    print("2- Selecionar uma mesa aberta \n");
                     print("3- Verificar stock dos produtos cadastrados \n");
                     print("4- Fechar mesar \n");
                     print("5- Fechar expediente \n");
@@ -70,10 +70,15 @@ public class MainView implements View{
                             otv.startView();
                         break;
                         case 2:
-                            print("");
+                            TableView tv = new TableView();
+                            tv.startView();
                         break;
                         case 3:
                             print("");
+                        break;
+                        case 4:
+                            CloseTablesView ctv = new CloseTablesView();
+                            ctv.startView();
                         break;
                         
                         default:

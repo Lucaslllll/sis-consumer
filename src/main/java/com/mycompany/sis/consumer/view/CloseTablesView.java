@@ -14,12 +14,11 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 /**
  *
  * @author Lucas
  */
-public class OpenTablesView implements View{
+public class CloseTablesView implements View{
 
     @Override
     public void startView() {
@@ -30,35 +29,35 @@ public class OpenTablesView implements View{
         
         
         print("\nEssas são todas as mesas cadastradas no sistema: \n");
-        print("Selecione uma mesa fechada para ABRÍ-LA! \n\n");
+        print("Selecione uma mesa aberta para FECHÁ-LA! \n\n");
         
         try {
             int count = 1, count2 = 1;
             for(Table t : lats.list()){
-                if(t.isIsOpen() == false){
-                    print("Digite '"+count+"' para abrir a mesa '"+t.getName()+"' \n");
+                if(t.isIsOpen() == true){
+                    print("Digite '"+count+"' para fechar a mesa '"+t.getName()+"' \n");
                     count++;
                     count2++;
                 }else{
-                    print("A mesa '"+t.getName()+"' está aberta! \n");
+                    print("A mesa '"+t.getName()+"' está fechada! \n");
                     count++;
                 }
              
             }
             
             if(count2 == 1){
-                print("\n ----Não há mesas livres---- \n\n");
+                print("\n ----Todas as mesas estão livres---- \n\n");
             }else{
             
                 short opcao = sc.nextShort();
                 Table toOpen = lats.list().get(opcao-1); // menos 1 de incremento final do for
 
-                toOpen.setIsOpen(true);
+                toOpen.setIsOpen(false);
                 
                 ChangeStatusTableService ots = new ChangeStatusTableService();
                 ots.open(toOpen);
                 
-                print(toOpen.getName()+" foi aberta com sucesso! \n");
+                print(toOpen.getName()+" foi fechada com sucesso! \n");
             }
             
         
@@ -69,9 +68,6 @@ public class OpenTablesView implements View{
         } catch (DatabaseException ex) {
             Logger.getLogger(OpenTablesView.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        
         
     }
     

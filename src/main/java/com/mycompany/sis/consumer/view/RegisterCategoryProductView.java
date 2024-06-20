@@ -8,7 +8,7 @@ import com.mycompany.sis.consumer.entity.Category;
 import com.mycompany.sis.consumer.exception.DAOException;
 import com.mycompany.sis.consumer.exception.DatabaseException;
 import com.mycompany.sis.consumer.exception.MigrationNotMakeException;
-import com.mycompany.sis.consumer.service.RegisterCategoryProductService;
+import com.mycompany.sis.consumer.service.CreateCategoryService;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,9 +28,8 @@ public class RegisterCategoryProductView implements View{
         Category category = new Category(name);
         
         try {
-            RegisterCategoryProductService rcp = new RegisterCategoryProductService(category);
-        } catch (DatabaseException ex) {
-            Logger.getLogger(RegisterCategoryProductView.class.getName());
+            CreateCategoryService ccs = new CreateCategoryService();
+            ccs.make(category);
         } catch (MigrationNotMakeException ex) {
             Logger.getLogger(RegisterCategoryProductView.class.getName());
         } catch (DAOException ex) {

@@ -19,7 +19,15 @@ public class Request extends Entity{
         this.waiter = waiter;
         
     }
-
+    
+    public Request(Product product, Table table){
+        this.product = product;
+        this.table = table;
+        this.waiter = null;
+        
+    }
+    
+    
     public Product getProduct() {
         return product;
     }

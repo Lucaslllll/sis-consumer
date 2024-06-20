@@ -20,6 +20,7 @@ import com.mycompany.sis.consumer.exception.DAOException;
 import com.mycompany.sis.consumer.exception.DatabaseException;
 import com.mycompany.sis.consumer.exception.MigrationNotMakeException;
 import com.mycompany.sis.consumer.service.CreateCategoryService;
+import com.mycompany.sis.consumer.service.CreateProductService;
 import com.mycompany.sis.consumer.service.CreateTableService;
 import com.mycompany.sis.consumer.service.CreateUserService;
 
@@ -81,7 +82,11 @@ public class SisConsumer {
         cts.make(t3);
         
         
-
+        // criar previamente alguns produtos
+        Product p1 = new Product("Churrasco", 4.5f, c2, 50, false);
+        Product p2 = new Product("Água de Coco", 4.5f, c2, 100, false);
+        CreateProductService cps = new CreateProductService();
+        cps.make(p1); cps.make(p2);
         
         
         
