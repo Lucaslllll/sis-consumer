@@ -47,7 +47,7 @@ public class CloseExpedientView implements View {
                 print("\nEsses foram os pedidos realizados nesse expedient: \n\n");
                 
                 int count2 = 1;
-                int montante = 0;
+                float montante = 0;
                 for(Request req : expedient.getListRequest()){
                     print(""+count2+" - "+req.getProduct().getName()+" no valor de R$ "+req.getProduct().getPrice()+" \n");
                     montante += req.getProduct().getPrice();
