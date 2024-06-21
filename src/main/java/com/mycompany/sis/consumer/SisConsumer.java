@@ -30,13 +30,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 /**
  *
  * @author Lucas
  */
 public class SisConsumer {
-
+    
     public static void main(String[] args) throws DatabaseException, MigrationNotMakeException, DAOException {
+        
         List<Class> nameTableMigrate = new ArrayList(
                 List.of(Category.class, Expedient.class, Table.class,
                             User.class, Product.class, Request.class
@@ -84,7 +86,7 @@ public class SisConsumer {
         
         // criar previamente alguns produtos
         Product p1 = new Product("Churrasco", 4.5f, c2, 50, false);
-        Product p2 = new Product("Água de Coco", 4.5f, c2, 100, false);
+        Product p2 = new Product("Água de Coco", 3.5f, c2, 100, false);
         CreateProductService cps = new CreateProductService();
         cps.make(p1); cps.make(p2);
         

@@ -74,13 +74,16 @@ public class MainView implements View{
                             tv.startView();
                         break;
                         case 3:
-                            
+                            GetAllStockProductsView gaspv = new GetAllStockProductsView();
+                            gaspv.startView();
                         break;
                         case 4:
                             CloseTablesView ctv = new CloseTablesView();
                             ctv.startView();
                         break;
-                        
+                        case 5:
+                            CloseExpedientView cev = new CloseExpedientView();
+                            cev.startView();
                         default:
                             continue;
                     }

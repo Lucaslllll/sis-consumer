@@ -27,6 +27,7 @@ import java.util.stream.Stream;
  */
 
 public class CategoryDAO{
+    
 //public class CategoryDAO <T extends Entity> implements DAO{
 //    private Database database;
 //

@@ -29,7 +29,10 @@ public class Expedient extends Entity{
         this.getListRequest().add(r);
     }
     
-    
+    // sempre que for retirado um pedido de uma mesa, devo retirar do expedient aberto
+    public void removeProductExpedient(Request r){
+        this.getListRequest().remove(r);
+    }
     
     public String getDateOpen() {
         return dateOpen;

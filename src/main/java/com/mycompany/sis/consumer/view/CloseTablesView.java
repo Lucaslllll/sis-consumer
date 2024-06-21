@@ -73,11 +73,12 @@ public class CloseTablesView implements View{
                 
                 print("\n\nO valor total da mesa é R$ "+(montante-toClose.getBonus())+" reais");
                 
-                print("\n\nModo de pagamento: ");
-                String modoPagamento = sc.nextLine();
-                sc.next();
+//                print("\n\nModo de pagamento: ");
+//                String modoPagamento = sc.nextLine();
+                
                 print("\n\nConfirma fechamento? (s/n) ");
-                String payed = sc.nextLine();
+                String payed;
+                payed = sc.next();
                 
                 if(payed.equals("s") || payed.equals("S")){
                     // setar true no campo payed/pago nos pedidos
