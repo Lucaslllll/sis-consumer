@@ -21,7 +21,6 @@ import java.util.function.Predicate;
  */
 public class LoginService {
     public boolean do_login(String email, String password) throws MigrationNotMakeException, DAOException{
-        // not implemented
         GeralDAO dao = new GeralDAO();
         
         
@@ -42,6 +41,7 @@ public class LoginService {
             // pego o meu usuário pelo email que está na primeira posição
             // e comparo com o parâmetro 'password'
             if(lue.get(0).getPassword().equals(password)){
+                
                 System.out.println("\nLogin feito com sucesso! ");
                 return true;
             }
@@ -54,5 +54,14 @@ public class LoginService {
         
         
         
+    }
+    
+    public boolean isAdmin(String email) throws MigrationNotMakeException, DAOException{
+        GeralDAO dao = new GeralDAO();
+        
+        Predicate<User> pegarEmail = user -> user.getEmail().equals(email);
+        List<User> lue = dao.findAll(User.class, pegarEmail);
+        
+        return lue.get(0).isIsAdmin();
     }
 }

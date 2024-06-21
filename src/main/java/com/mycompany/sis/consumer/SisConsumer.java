@@ -39,6 +39,7 @@ public class SisConsumer {
     
     public static void main(String[] args) throws DatabaseException, MigrationNotMakeException, DAOException {
         
+        
         List<Class> nameTableMigrate = new ArrayList(
                 List.of(Category.class, Expedient.class, Table.class,
                             User.class, Product.class, Request.class

@@ -33,6 +33,7 @@ public class LoginView implements View{
         LoginService ls = new LoginService();
         try {
             if(ls.do_login(email, password)){
+                MainView.logadoAdmin = ls.isAdmin(email);
                 
                 // check se há expedient aberto
                 CheckExpedientService ces = new CheckExpedientService();
