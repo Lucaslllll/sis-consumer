@@ -62,11 +62,7 @@ public class OpenTablesView implements View{
             }
             
         
-        } catch (DAOException ex) {
-            Logger.getLogger(OpenTablesView.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (MigrationNotMakeException ex) {
-            Logger.getLogger(OpenTablesView.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (DatabaseException ex) {
+        } catch (DAOException | MigrationNotMakeException | DatabaseException ex) {
             Logger.getLogger(OpenTablesView.class.getName()).log(Level.SEVERE, null, ex);
         }
         

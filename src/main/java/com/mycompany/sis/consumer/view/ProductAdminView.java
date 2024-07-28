@@ -25,7 +25,22 @@ public class ProductAdminView implements View{
         
         short opcao = sc.nextShort();
         
-        
+        switch(opcao){
+            case 1:
+                RegisterProductView rpv = new RegisterProductView();
+                rpv.startView();
+            break;
+            
+            case 2:
+            break;
+            
+            case 3:
+            break;
+            
+            default:
+            break;
+            
+        }
     }
     
 }

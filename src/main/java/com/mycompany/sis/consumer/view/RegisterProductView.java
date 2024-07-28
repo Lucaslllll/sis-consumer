@@ -10,7 +10,7 @@ import com.mycompany.sis.consumer.entity.Expedient;
 import com.mycompany.sis.consumer.entity.Product;
 import com.mycompany.sis.consumer.exception.DAOException;
 import com.mycompany.sis.consumer.exception.MigrationNotMakeException;
-import com.mycompany.sis.consumer.service.RegisterProductService;
+import com.mycompany.sis.consumer.service.CreateProductService;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -46,7 +46,8 @@ public class RegisterProductView implements View{
             }else{
                 short cout = 1; 
                 for(Category c : cat){
-                    System.out.println(String.valueOf(cout)+" - "+c.getName());
+                    print("\n");
+                    print(String.valueOf(cout)+" - "+c.getName()+" \n");
                     cout++;
                 }
                 short opcao = sc.nextShort();
@@ -71,9 +72,15 @@ public class RegisterProductView implements View{
         
         Product p = new Product(name, price, category, stock, isMissing);
         
-        RegisterProductService rps = new RegisterProductService(p);
+        CreateProductService cps = new CreateProductService();
         
-        sc.close();
+        try {
+            cps.make(p);
+        } catch (DAOException | MigrationNotMakeException ex) {
+            Logger.getLogger(RegisterProductView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
     }
     
 }

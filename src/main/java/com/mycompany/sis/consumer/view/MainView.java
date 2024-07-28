@@ -37,8 +37,8 @@ public class MainView implements View{
             try {
                 if(ces.test()){
                     print("\nO sistema está fechado: \n");
-                    print("1- Abrir sistema \n");
-                    print("2- Sair \n");
+                    print(Colors.GREEN+"1- Abrir sistema \n");
+                    print(Colors.RED+"2- Sair \n"+Colors.RESET);
                     opcao = sc.nextShort();
 
                     switch(opcao){
@@ -97,9 +97,20 @@ public class MainView implements View{
                             }
                         break;
                         case 7:
-                            
+                            CategoryAdminView cav = new CategoryAdminView();
+                            if(logadoAdmin){
+                                cav.startView();
+                            }else{
+                                print("\nVocê precisar ser admin!\n");
+                            }
                         break;
                         case 8:
+                            TableAdminView tav = new TableAdminView();
+                            if(logadoAdmin){
+                                tav.startView();
+                            }else{
+                                print("\nVocê precisar ser admin!\n");
+                            }
                         break;
                         
                         default:

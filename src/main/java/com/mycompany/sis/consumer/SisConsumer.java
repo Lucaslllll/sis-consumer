@@ -4,21 +4,20 @@
 
 package com.mycompany.sis.consumer;
 
-import com.mycompany.sis.consumer.dao.GeralDAO;
 import com.mycompany.sis.consumer.database.Database;
 import com.mycompany.sis.consumer.database.DatabaseTable;
 
 import com.mycompany.sis.consumer.entity.Category;
-import com.mycompany.sis.consumer.entity.Entity;
 import com.mycompany.sis.consumer.entity.Expedient;
 import com.mycompany.sis.consumer.entity.Product;
 import com.mycompany.sis.consumer.entity.Request;
 import com.mycompany.sis.consumer.entity.Table;
 import com.mycompany.sis.consumer.entity.User;
-import com.mycompany.sis.consumer.exception.DAOException;
 
+import com.mycompany.sis.consumer.exception.DAOException;
 import com.mycompany.sis.consumer.exception.DatabaseException;
 import com.mycompany.sis.consumer.exception.MigrationNotMakeException;
+
 import com.mycompany.sis.consumer.service.CreateCategoryService;
 import com.mycompany.sis.consumer.service.CreateProductService;
 import com.mycompany.sis.consumer.service.CreateTableService;
